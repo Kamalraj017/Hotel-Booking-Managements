@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Room Booking Chatbot</title>
+ <style>
+  body {
+  font-family: Arial, sans-serif;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.chat-box {
+  width: 300px;
+  height: 400px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  overflow-y: scroll;
+}
+
+input, button {
+  margin-top: 10px;
+}
+
+button {
+  padding: 5px 10px;
+}
+
+ </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-box" id="chat-box"></div>
+    <input type="text" id="user-input" placeholder="Type your message here...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+  <script>
+    const chatBox = document.getElementById('chat-box');
+const userInput = document.getElementById('user-input');
+
+function sendMessage() {
+  const message = userInput.value;
+  userInput.value = '';
+
+  const chatMessage = document.createElement('div');
+  chatMessage.className = 'message';
+  chatMessage.innerText = `You: ${message}`;
+  chatBox.appendChild(chatMessage);
+
+  // Call function to process user message and generate bot response
+  processMessage(message);
+}
+
+function processMessage(message) {
+  // Implement logic to process user message and generate appropriate bot response
+  // Example: Check user input and provide recommendation based on room requirements and holiday plans
+
+  const botResponse = document.createElement('div');
+  botResponse.className = 'message';
+  botResponse.innerText = `Bot: [Bot response here]`;
+  chatBox.appendChild(botResponse);
+}
+function processMessage(message) {
+  let botResponse = '';
+
+  if (message.includes('book') && message.includes('room')) {
+    botResponse = 'Bot: Sure! Please provide the number of bedrooms (2, 3, or 4) and any specific amenities you prefer.';
+  } else if (message.includes('holiday') || message.includes('vacation')) {
+    botResponse = 'Bot: Great! Let me recommend some holiday plans for you. Could you provide the duration of your stay and preferred location?';
+  } else {
+    botResponse = 'Bot: I can assist you with room booking and holiday planning. Feel free to ask any specific questions.';
+  }
+
+  const botMessage = document.createElement('div');
+  botMessage.className = 'message';
+  botMessage.innerText = botResponse;
+  chatBox.appendChild(botMessage);
+}
+
+
+  </script>
+</body>
+</html>
